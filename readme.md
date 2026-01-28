@@ -1,5 +1,5 @@
 <p align="center">
-  <img src"./img/Gemini_Generated_Image_ux1y2oux1y2oux1y.png" alt="DexHunt Pokéball" alt="DexHunt Pokéball" width="350" />
+  <img src="./img/Gemini_Generated_Image_ux1y2oux1y2oux1y.png" alt="DexHunt Pokéball" width="350" />
 </p>
 
 <p align="center">
