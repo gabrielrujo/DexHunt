@@ -1,9 +1,9 @@
 // src/game/rarity.js
 
 const RARITY_WEIGHTS = [
-  { rarity: 'legendary', weight: 2 }, // 2%
-  { rarity: 'rare', weight: 18 },     // 18%
-  { rarity: 'common', weight: 80 }    // 80%
+  { rarity: 'legendary', weight: 5 }, // 5%
+  { rarity: 'rare', weight: 25 },     // 25%
+  { rarity: 'common', weight: 70 }    // 70%
 ]
 
 function rollRarity() {
