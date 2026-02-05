@@ -2,6 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
 const { getPokemonById } = require('../services/pokeapi')
 const path = require('path')
 const { readJson, writeJson } = require('../utils/jsonStore')
+const { rollRarity } = require('../game/rarity')
+
 
 const SERVERS_DB_PATH = path.resolve(__dirname, '../data/servers.json')
 
@@ -40,11 +42,16 @@ module.exports = {
     const id = randomInt(1, 1025)
     const pokemon = await getPokemonById(id)
 
+    // Definir raridade
+    const rarity = rollRarity()
+
+
     // 5️⃣ Salvar no JSON
     serversDb[serverId] = {
       activePokemon: {
         id: pokemon.id,
         name: pokemon.name,
+        rarity: rarity,
         types: pokemon.types.map(t => t.type.name),
         image:
           pokemon.sprites?.other?.['official-artwork']?.front_default ||
