@@ -47,18 +47,21 @@ module.exports = {
     const pokemonName = interaction.options.getString('pokemon').toLowerCase()
     const userId = interaction.user.id
 
+    // lê base
     const usersDb = readJson(USERS_DB_PATH, {})
+    const userData = usersDb[userId]
 
-    // verifica se usuário já tem um Pokémon inicial
-    if (usersDb[userId]?.captured?.some(p => p.isStarter)) {
-    return interaction.reply({
-    content: 'Você já escolheu um Pokémon inicial.',
-    ephemeral: true
-  })
-}
+    // starter permitido mesmo se já tiver capturas,
+    // mas bloqueia se já tiver escolhido um starter antes
+    if (userData?.captured?.some(p => p.isStarter)) {
+      return interaction.reply({
+        content: 'Você já escolheu um Pokémon inicial.',
+        ephemeral: true
+      })
+    }
 
+    // valida se o pokemon pertence à geração escolhida
     const starters = STARTERS[generation]
-
     if (!starters || !starters.includes(pokemonName)) {
       return interaction.reply({
         content: 'Esse Pokémon não é um starter dessa geração.',
@@ -72,7 +75,8 @@ module.exports = {
 
     const image =
       pokemon.sprites?.other?.['official-artwork']?.front_default ||
-      pokemon.sprites?.front_default
+      pokemon.sprites?.front_default ||
+      null
 
     // embed preview
     const embed = new EmbedBuilder()
@@ -106,49 +110,63 @@ module.exports = {
     })
 
     collector.on('collect', async i => {
-
-      if (i.customId === 'starter_confirm') {
-
-        usersDb[userId] = {
-          captured: [
-            {
-              id: pokemon.id,
-              name: pokemon.name,
-              types: pokemon.types.map(t => t.type.name),
-              image: image,
-              rarity: 'starter',
-              isStarter: true,
-              capturedAt: Date.now(),
-              serverId: interaction.guildId
-            }
-          ],
-          createdAt: Date.now()
-        }
-
-        writeJson(USERS_DB_PATH, usersDb)
-
-        await i.update({
-          content: `✅ ${pokemon.name} foi escolhido como seu starter!`,
-          embeds: [],
-          components: []
-        })
-
-      }
-
       if (i.customId === 'starter_cancel') {
-
-        await i.update({
+        collector.stop('cancelled')
+        return i.update({
           content: 'Starter cancelado.',
           embeds: [],
           components: []
         })
-
       }
 
+      if (i.customId === 'starter_confirm') {
+        // recarrega do disco pra evitar sobrescrever capturas recentes
+        const freshDb = readJson(USERS_DB_PATH, {})
+        const existing = freshDb[userId]
+
+        // se já tem starter, bloqueia
+        if (existing?.captured?.some(p => p.isStarter)) {
+          collector.stop('already_has_starter')
+          return i.update({
+            content: 'Você já escolheu um Pokémon inicial.',
+            embeds: [],
+            components: []
+          })
+        }
+
+        // garante estrutura do usuário
+        if (!freshDb[userId]) {
+          freshDb[userId] = { captured: [], createdAt: Date.now() }
+        }
+        if (!Array.isArray(freshDb[userId].captured)) {
+          freshDb[userId].captured = []
+        }
+
+        // adiciona starter sem apagar capturas antigas
+        freshDb[userId].captured.push({
+          id: pokemon.id,
+          name: pokemon.name,
+          types: pokemon.types.map(t => t.type.name),
+          image,
+          rarity: 'starter',
+          isStarter: true,
+          capturedAt: Date.now(),
+          serverId: interaction.guildId
+        })
+
+        writeJson(USERS_DB_PATH, freshDb)
+
+        collector.stop('confirmed')
+        return i.update({
+          content: `✅ ${pokemon.name} foi escolhido como seu starter!`,
+          embeds: [],
+          components: []
+        })
+      }
     })
 
-    collector.on('end', async collected => {
-      if (collected.size === 0) {
+    collector.on('end', async (_collected, reason) => {
+      if (reason === 'time') {
         await interaction.editReply({
           content: '⏳ Tempo para escolher o starter expirou.',
           embeds: [],

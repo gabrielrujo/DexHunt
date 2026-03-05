@@ -1,5 +1,5 @@
 const STARTERS = {
-  1: ["bulbasaur", "charmander", "squirtle"],
+  1: ["bulbasaur", "charmander", "squirtle", "pikachu"],
   2: ["chikorita", "cyndaquil", "totodile"],
   3: ["treecko", "torchic", "mudkip"],
   4: ["turtwig", "chimchar", "piplup"],

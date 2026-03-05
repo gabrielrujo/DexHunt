@@ -2,18 +2,6 @@
   "1015265771909292032": {
     "captured": [
       {
-        "id": 4,
-        "name": "charmander",
-        "types": [
-          "fire"
-        ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-        "rarity": "starter",
-        "isStarter": true,
-        "capturedAt": 1772672076977,
-        "serverId": "1465081056612061205"
-      },
-      {
         "id": 9,
         "name": "blastoise",
         "types": [
@@ -21,6 +9,61 @@
         ],
         "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png",
         "capturedAt": 1772672123409,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 255,
+        "name": "torchic",
+        "types": [
+          "fire"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/255.png",
+        "rarity": "starter",
+        "isStarter": true,
+        "capturedAt": 1772673087102,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 34,
+        "name": "nidoking",
+        "types": [
+          "poison",
+          "ground"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/34.png",
+        "capturedAt": 1772673157408,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 497,
+        "name": "serperior",
+        "types": [
+          "grass"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/497.png",
+        "capturedAt": 1772673179847,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 860,
+        "name": "morgrem",
+        "types": [
+          "dark",
+          "fairy"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/860.png",
+        "capturedAt": 1772673766898,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 646,
+        "name": "kyurem",
+        "types": [
+          "dragon",
+          "ice"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png",
+        "capturedAt": 1772674368200,
         "serverId": "1465081056612061205"
       }
     ],

@@ -4,8 +4,11 @@ const path = require('path')
 const { readJson, writeJson } = require('../utils/jsonStore')
 const { rollRarity } = require('../game/rarity')
 
-
 const SERVERS_DB_PATH = path.resolve(__dirname, '../data/servers.json')
+
+// tempo de vida do spawn (2 minutos)
+const DESPAWN_MINUTES = 2
+const TTL_MS = DESPAWN_MINUTES * 60 * 1000
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -13,6 +16,10 @@ function randomInt(min, max) {
 
 function capitalize(text) {
   return text ? text.charAt(0).toUpperCase() + text.slice(1) : text
+}
+
+function isExpired(spawnedAt) {
+  return !spawnedAt || (Date.now() - spawnedAt) >= TTL_MS
 }
 
 module.exports = {
@@ -23,11 +30,35 @@ module.exports = {
   async execute(interaction) {
     const serverId = interaction.guildId
 
-    // 1️⃣ Ler estado atual do servidor
     const serversDb = readJson(SERVERS_DB_PATH, {})
-    const current = serversDb[serverId]?.activePokemon
+    let current = serversDb[serverId]?.activePokemon
 
-    // 2️⃣ Bloquear se já existir Pokémon ativo
+    // verifica se o spawn atual expirou
+    if (current && isExpired(current.spawnedAt)) {
+      delete serversDb[serverId].activePokemon
+      writeJson(SERVERS_DB_PATH, serversDb)
+      setTimeout(async () => {
+      const db = readJson(SERVERS_DB_PATH, {})
+      const active = db[serverId]?.activePokemon
+
+      if (!active) return
+
+      const expired = !active.spawnedAt || (Date.now() - active.spawnedAt) >= TTL_MS
+      if (!expired) return
+
+      delete db[serverId].activePokemon
+      writeJson(SERVERS_DB_PATH, db)
+
+      try {
+        await interaction.followUp({
+        content: `💨 **${capitalize(active.name)}** fugiu de volta para a natureza...`
+      })
+    } catch {}
+  }, TTL_MS)
+      current = null
+    }
+
+    // bloqueia se ainda existir um spawn ativo
     if (current) {
       return interaction.reply({
         content: `🚫 Já existe um Pokémon selvagem ativo (**${capitalize(current.name)}**).\nUse **/catch** ou **/clearspawn**.`,
@@ -35,18 +66,14 @@ module.exports = {
       })
     }
 
-    // 3️⃣ Agora sim deferimos a resposta
     await interaction.deferReply()
 
-    // 4️⃣ Gerar Pokémon
+    // gerar pokemon
     const id = randomInt(1, 1025)
     const pokemon = await getPokemonById(id)
 
-    // Definir raridade
     const rarity = rollRarity()
 
-
-    // 5️⃣ Salvar no JSON
     serversDb[serverId] = {
       activePokemon: {
         id: pokemon.id,
@@ -64,7 +91,6 @@ module.exports = {
 
     writeJson(SERVERS_DB_PATH, serversDb)
 
-    // 6️⃣ Preparar embed
     const name = capitalize(pokemon.name)
 
     const image =
@@ -83,10 +109,10 @@ module.exports = {
         { name: 'ID', value: String(pokemon.id), inline: true }
       )
       .setFooter({ text: 'DexHunt • Use /catch para tentar capturar' })
+      .setFooter({ text: 'DexHunt • Use /catch antes que ele fuja!' })
 
     if (image) embed.setImage(image)
 
-    // 7️⃣ Responder
     await interaction.editReply({ embeds: [embed] })
   }
 }
