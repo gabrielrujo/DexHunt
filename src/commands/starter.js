@@ -49,13 +49,13 @@ module.exports = {
 
     const usersDb = readJson(USERS_DB_PATH, {})
 
-    // verifica se usuário já tem Pokémon
-    if (usersDb[userId] && usersDb[userId].captured?.length > 0) {
-      return interaction.reply({
-        content: 'Você já possui Pokémon e não pode escolher um starter.',
-        ephemeral: true
-      })
-    }
+    // verifica se usuário já tem um Pokémon inicial
+    if (usersDb[userId]?.captured?.some(p => p.isStarter)) {
+    return interaction.reply({
+    content: 'Você já escolheu um Pokémon inicial.',
+    ephemeral: true
+  })
+}
 
     const starters = STARTERS[generation]
 
