@@ -65,8 +65,35 @@
         "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png",
         "capturedAt": 1772674368200,
         "serverId": "1465081056612061205"
+      },
+      {
+        "id": 1010,
+        "name": "iron-leaves",
+        "types": [
+          "grass",
+          "psychic"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1010.png",
+        "capturedAt": 1772676590713,
+        "serverId": "1465081056612061205"
       }
     ],
     "createdAt": 1772672076977
+  },
+  "1460118365522886827": {
+    "captured": [
+      {
+        "id": 634,
+        "name": "zweilous",
+        "types": [
+          "dark",
+          "dragon"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/634.png",
+        "capturedAt": 1772676815986,
+        "serverId": "1465081056612061205"
+      }
+    ],
+    "createdAt": 1772676815986
   }
 }
