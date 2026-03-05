@@ -108,6 +108,39 @@
         "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/889.png",
         "capturedAt": 1772736080937,
         "serverId": "1465081056612061205"
+      },
+      {
+        "id": 727,
+        "name": "incineroar",
+        "types": [
+          "fire",
+          "dark"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/727.png",
+        "capturedAt": 1772736951278,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 2,
+        "name": "ivysaur",
+        "types": [
+          "grass",
+          "poison"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+        "capturedAt": 1772736998224,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 1007,
+        "name": "koraidon",
+        "types": [
+          "fighting",
+          "dragon"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1007.png",
+        "capturedAt": 1772737041697,
+        "serverId": "1465081056612061205"
       }
     ],
     "createdAt": 1772672076977
@@ -183,6 +216,16 @@
         "rarity": "starter",
         "isStarter": true,
         "capturedAt": 1772736466898,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 470,
+        "name": "leafeon",
+        "types": [
+          "grass"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png",
+        "capturedAt": 1772737180851,
         "serverId": "1465081056612061205"
       }
     ],
