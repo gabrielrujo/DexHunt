@@ -1,16 +1,3 @@
 {
-  "1465081056612061205": {
-    "activePokemon": {
-      "id": 124,
-      "name": "jynx",
-      "rarity": "common",
-      "types": [
-        "ice",
-        "psychic"
-      ],
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/124.png",
-      "spawnedAt": 1772667380290,
-      "spawnedBy": "1015265771909292032"
-    }
-  }
+  "1465081056612061205": {}
 }
