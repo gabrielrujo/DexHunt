@@ -15,8 +15,9 @@ function capitalize(text) {
 }
 
 function getDespawnMs(rarity) {
-  // 1 min para lendários, 2 min para o resto
-  return rarity === 'legendary' ? 60 * 1000 : 2 * 60 * 1000
+  const common = (Number(process.env.DESPAWN_COMMON_SECONDS) || 120) * 1000
+  const legendary = (Number(process.env.DESPAWN_LEGENDARY_SECONDS) || 60) * 1000
+  return rarity === 'legendary' ? legendary : common
 }
 
 function isExpired(spawnedAt, ttlMs) {
