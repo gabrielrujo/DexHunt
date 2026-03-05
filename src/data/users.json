@@ -76,6 +76,38 @@
         "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1010.png",
         "capturedAt": 1772676590713,
         "serverId": "1465081056612061205"
+      },
+      {
+        "id": 791,
+        "name": "solgaleo",
+        "types": [
+          "psychic",
+          "steel"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/791.png",
+        "capturedAt": 1772735843839,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 373,
+        "name": "salamence",
+        "types": [
+          "dragon",
+          "flying"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/373.png",
+        "capturedAt": 1772736034083,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 889,
+        "name": "zamazenta",
+        "types": [
+          "fighting"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/889.png",
+        "capturedAt": 1772736080937,
+        "serverId": "1465081056612061205"
       }
     ],
     "createdAt": 1772672076977
@@ -95,5 +127,65 @@
       }
     ],
     "createdAt": 1772676815986
+  },
+  "533197308830154783": {
+    "captured": [
+      {
+        "id": 609,
+        "name": "chandelure",
+        "types": [
+          "ghost",
+          "fire"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/609.png",
+        "capturedAt": 1772735680413,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 309,
+        "name": "electrike",
+        "types": [
+          "electric"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/309.png",
+        "capturedAt": 1772735700403,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 389,
+        "name": "torterra",
+        "types": [
+          "grass",
+          "ground"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/389.png",
+        "capturedAt": 1772735717290,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 959,
+        "name": "tinkaton",
+        "types": [
+          "fairy",
+          "steel"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/959.png",
+        "capturedAt": 1772736064393,
+        "serverId": "1465081056612061205"
+      },
+      {
+        "id": 656,
+        "name": "froakie",
+        "types": [
+          "water"
+        ],
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/656.png",
+        "rarity": "starter",
+        "isStarter": true,
+        "capturedAt": 1772736466898,
+        "serverId": "1465081056612061205"
+      }
+    ],
+    "createdAt": 1772735579348
   }
 }
